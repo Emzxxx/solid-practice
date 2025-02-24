@@ -1,6 +1,6 @@
 import argparse
 
-from gridgame.model import GridGameModel
+from gridgame.model import GridGameModel, TicTacToeGameType, WildTicTacToeGameType, NotaktoGameType
 from gridgame.view import View
 from gridgame.controller import Controller
 
@@ -30,14 +30,24 @@ def make_model(args: argparse.Namespace):
                 grid_size=args.size,
                 player_count=args.player_count,
                 player_symbols=args.symbols,
+                game_type = TicTacToeGameType()
             )
 
         case "wild":
-            raise NotImplementedError('wild variant is not yet implemented')
+            return GridGameModel(
+                grid_size=args.size,
+                player_count=args.player_count,
+                player_symbols=args.symbols,
+                game_type = WildTicTacToeGameType()
+            )
 
         case "notakto":
-            raise NotImplementedError('notakto variant is not yet implemented')
-
+            return GridGameModel(
+                grid_size=args.size,
+                player_count=args.player_count,
+                player_symbols=args.symbols,
+                game_type = NotaktoGameType()
+            )
         case "pick15":
             raise NotImplementedError('pick15 variant is not yet implemented')
 
